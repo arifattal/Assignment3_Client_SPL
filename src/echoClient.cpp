@@ -1,5 +1,10 @@
 #include <stdlib.h>
-#include <connectionHandler.h>
+#include <ConnectionHandler.h>
+#include <thread>
+
+#include "readSocket.h"
+#include "readKeyboard.h"
+
 //
 /**
 * This code assumes that the server replies the exact text the client sent it (as opposed to the practical session example)
@@ -17,6 +22,17 @@ int main (int argc, char *argv[]) {
         std::cerr << "Cannot connect to " << host << ":" << port << std::endl;
         return 1;
     }
+
+    readKeyboard keyboardTask(&connectionHandler);
+    readSocket socketTask(&connectionHandler);
+
+    std::thread keyboardThread(&readKeyboard::run, &keyboardTask);
+    std::thread socketThread(&readSocket::run, &socketTask);
+
+    keyboardThread.join();
+    socketThread.join();
+    return 0;
+
 	
 	//From here we will see the rest of the ehco client implementation:
     while (1) {
@@ -25,6 +41,7 @@ int main (int argc, char *argv[]) {
         std::cin.getline(buf, bufsize);
 		std::string line(buf);
 		int len=line.length();
+        line = line + ";"; //add ; marker to the end of the text received from keyboard
         if (!connectionHandler.sendLine(line)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
@@ -49,6 +66,7 @@ int main (int argc, char *argv[]) {
 		// A C string must end with a 0 char delimiter.  When we filled the answer buffer from the socket
 		// we filled up to the \n char - we must make sure now that a 0 char is also present. So we truncate last character.
         answer.resize(len-1);
+        std::cout << answer << std::endl; //added
         std::cout << "Reply: " << answer << " " << len << " bytes " << std::endl << std::endl;
         if (answer == "bye") {
             std::cout << "Exiting...\n" << std::endl;

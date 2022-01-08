@@ -1,4 +1,4 @@
-#include <connectionHandler.h>
+#include <ConnectionHandler.h>
  
 using boost::asio::ip::tcp;
 
@@ -8,7 +8,8 @@ using std::cerr;
 using std::endl;
 using std::string;
 //
-ConnectionHandler::ConnectionHandler(string host, short port): host_(host), port_(port), io_service_(), socket_(io_service_){}
+ConnectionHandler::ConnectionHandler(string host, short port): host_(host), port_(port), io_service_(), socket_(io_service_){
+}
     
 ConnectionHandler::~ConnectionHandler() {
     close();
@@ -64,15 +65,16 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
 }
  
 bool ConnectionHandler::getLine(std::string& line) {
+    cout << line << endl;
     return getFrameAscii(line, '\n');
 }
 
 bool ConnectionHandler::sendLine(std::string& line) {
     return sendFrameAscii(line, '\n');
 }
- 
+ ///
 bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
-    char ch;
+    char ch; //this is the null char
     // Stop when we encounter the null character. 
     // Notice that the null character is not appended to the frame string.
     try {
