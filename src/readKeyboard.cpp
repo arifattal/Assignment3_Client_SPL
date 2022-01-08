@@ -3,6 +3,7 @@
 //
 
 #include "../include/readKeyboard.h"
+#include <iostream>
 
 readKeyboard::readKeyboard(ConnectionHandler *handler):handler(handler), shouldTerminate(false){};
 
@@ -14,10 +15,11 @@ void readKeyboard::run() {
         std::string line(buf);
         int len=line.length();
         line = line + ";"; //add ; marker to the end of the text received from keyboard
-        if (!handler->sendLine(line)) {
-            std::cout << "Disconnected. Exiting...\n" << std::endl;
-            break;
-        }
+        handler->sendLine(line);
+//        if (!handler->sendLine(line)) {
+//            std::cout << "Disconnected. Exiting...\n" << std::endl;
+//            break;
+//        }
         // connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.
         std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
     }

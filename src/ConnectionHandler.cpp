@@ -65,7 +65,7 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
 }
  
 bool ConnectionHandler::getLine(std::string& line) {
-    cout << line << endl;
+    std::cout<< "entered this function" <<std::endl;
     return getFrameAscii(line, '\n');
 }
 

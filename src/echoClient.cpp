@@ -29,8 +29,8 @@ int main (int argc, char *argv[]) {
     std::thread keyboardThread(&readKeyboard::run, &keyboardTask);
     std::thread socketThread(&readSocket::run, &socketTask);
 
-    keyboardThread.join();
     socketThread.join();
+    keyboardThread.join();
     return 0;
 
 	
