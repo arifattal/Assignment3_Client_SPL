@@ -14,7 +14,7 @@ void readSocket::run(){
         std::string answer;
         // Get back an answer: by using the expected number of bytes (len bytes + newline delimiter)
         // We could also use: connectionHandler.getline(answer) and then get the answer without the newline char at the end
-        if (handler->getLine(answer)) {
+        if (!handler->getLine(answer)) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
         }
