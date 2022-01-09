@@ -6,7 +6,7 @@
 #include <iostream>
 
 readKeyboard::readKeyboard(ConnectionHandler *handler):handler(handler), shouldTerminate(false){};
-
+//
 void readKeyboard::run() {
     while(!shouldTerminate){
         const short bufsize = 1024;

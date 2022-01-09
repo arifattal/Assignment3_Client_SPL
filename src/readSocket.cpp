@@ -6,7 +6,7 @@
 #include <iostream>
 
 readSocket::readSocket(ConnectionHandler *handler): handler(handler), shouldTerminate(false){};
-
+//
 void readSocket::run(){
     int len = 0;
     while(!shouldTerminate){
