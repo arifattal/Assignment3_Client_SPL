@@ -14,7 +14,7 @@ class readSocket {
     bool shouldTerminate;
 
 public:
-    readSocket(ConnectionHandler *handler);
+    readSocket(ConnectionHandler *handler, bool &shouldTerminate);
     void run();
 };
 

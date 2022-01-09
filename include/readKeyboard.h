@@ -14,7 +14,7 @@ class readKeyboard {
     ConnectionHandler *handler;
     bool shouldTerminate;
 public:
-    readKeyboard(ConnectionHandler *handler);
+    readKeyboard(ConnectionHandler *handler, bool &shouldTerminate);
     void run(); //need to be public for running using threads
 };
 

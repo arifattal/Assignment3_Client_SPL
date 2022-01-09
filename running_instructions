@@ -6,3 +6,18 @@ explanation: args[0] = program name, args[1] =server's ip address, args[2] = ser
 for example:
 REGISTER Roni 123 01/01/2000
 LOGIN Roni 123 2
+REGISTER Ari 1234 12/09/1995
+LOGIN Ari 1234 2
+Ari << FOLLOW 0 Roni
+Roni << FOLLOW 0 Ari
+Ari << POST hello @Roni ve gam shalom le @Adler
+Roni << PM Ari shalom aval lo shabbat shalom
+Roni << LOGSTAT
+Ari << LOGOUT
+Roni << PM Ari eifo ata lama ata lo mechubar?
+New Client(Meaning a new connection handler) << LOGIN Ari 1234 2
+Ari << (should receive the notification)
+Roni << BLOCK Ari
+Ari << POST hello @Roni ve gam shalom le @Marina
+Roni << LOGOUT
+Ari << LOGOUT

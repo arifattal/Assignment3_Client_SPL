@@ -23,8 +23,10 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    readKeyboard keyboardTask(&connectionHandler);
-    readSocket socketTask(&connectionHandler);
+    bool shouldTerminate = false; //this value is sent by reference to both threads so that we can shut them simultaneously
+
+    readKeyboard keyboardTask(&connectionHandler, shouldTerminate);
+    readSocket socketTask(&connectionHandler, shouldTerminate);
 
     std::thread keyboardThread(&readKeyboard::run, &keyboardTask);
     std::thread socketThread(&readSocket::run, &socketTask);

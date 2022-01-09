@@ -38,7 +38,6 @@ bool ConnectionHandler::getBytes(char bytes[], unsigned int bytesToRead) {
     try {
         while (!error && bytesToRead > tmp ) {
 			tmp += socket_.read_some(boost::asio::buffer(bytes+tmp, bytesToRead-tmp), error);
-            std::cout << "tmp has grown" << std::endl; //added
         }
 		if(error)
 			throw boost::system::system_error(error);
@@ -66,7 +65,6 @@ bool ConnectionHandler::sendBytes(const char bytes[], int bytesToWrite) {
 }
  
 bool ConnectionHandler::getLine(std::string& line) {
-    std::cout<< "entered this function" <<std::endl;
     return getFrameAscii(line, '\n'); //the delimiter was '\n'
 }
 
@@ -82,14 +80,11 @@ bool ConnectionHandler::getFrameAscii(std::string& frame, char delimiter) {
 		do{
 			getBytes(&ch, 1);
             frame.append(1, ch);
-            std::cout << frame.length() << std::endl;
         }while (delimiter != ch);
-        std::cout << "string frame is: " << frame << std::endl;
     } catch (std::exception& e) {
         std::cerr << "recv failed (Error: " << e.what() << ')' << std::endl;
         return false;
     }
-    std::cout << "get frame ascii returned true" << std::endl;
     return true;
 }
  

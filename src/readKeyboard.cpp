@@ -5,7 +5,7 @@
 #include "../include/readKeyboard.h"
 #include <iostream>
 
-readKeyboard::readKeyboard(ConnectionHandler *handler):handler(handler), shouldTerminate(false){};
+readKeyboard::readKeyboard(ConnectionHandler *handler, bool &shouldTerminate):handler(handler), shouldTerminate(shouldTerminate){};
 //
 void readKeyboard::run() {
     while(!shouldTerminate){
@@ -23,4 +23,5 @@ void readKeyboard::run() {
         // connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.
         std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
     }
+    std::cout << "readKeyboard thread finished his job" << std::endl;
 }
