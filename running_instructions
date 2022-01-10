@@ -1,18 +1,19 @@
 1. make clean
 2. make
-3. bin/BGSclient 192.168.0.127 7777
+3. bin/BGSclient 127.0.0.1 2777
 explanation: args[0] = program name, args[1] =server's ip address, args[2] = server's port
 4. send message in the correct form
 for example:
-REGISTER Roni 123 01/01/2000
+REGISTER Roni 123 08/10/1997
 LOGIN Roni 123 2
 REGISTER Ari 1234 12/09/1995
 LOGIN Ari 1234 2
 Ari << FOLLOW 0 Roni
 Roni << FOLLOW 0 Ari
 Ari << POST hello @Roni ve gam shalom le @Adler
-Roni << PM Ari shalom aval lo shabbat shalom
+Roni << PM Ari shalom aval lo shabbat shalom ya maniac
 Roni << LOGSTAT
+Ari << STAT Roni
 Ari << LOGOUT
 Roni << PM Ari eifo ata lama ata lo mechubar?
 New Client(Meaning a new connection handler) << LOGIN Ari 1234 2
