@@ -20,7 +20,7 @@ void readKeyboard::run() {
 //            std::cout << "Disconnected. Exiting...\n" << std::endl;
 //            break;
 //        }
-        // connectionHandler.sendLine(line) appends '\n' to the message. Therefor we send len+1 bytes.
+        // connectionHandler.sendLine(line) appends '\n' to the message. Therefore we send len+1 bytes.
         std::cout << "Sent " << len+1 << " bytes to server" << std::endl;
     }
     std::cout << "readKeyboard thread finished his job" << std::endl;

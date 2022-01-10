@@ -12,7 +12,7 @@
 
 class readKeyboard {
     ConnectionHandler *handler;
-    bool shouldTerminate;
+    bool& shouldTerminate;
 public:
     readKeyboard(ConnectionHandler *handler, bool &shouldTerminate);
     void run(); //need to be public for running using threads

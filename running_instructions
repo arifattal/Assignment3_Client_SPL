@@ -1,6 +1,6 @@
 1. make clean
 2. make
-3. bin/BGSclient 192.168.1.26 7777
+3. bin/BGSclient 192.168.0.127 7777
 explanation: args[0] = program name, args[1] =server's ip address, args[2] = server's port
 4. send message in the correct form
 for example:
