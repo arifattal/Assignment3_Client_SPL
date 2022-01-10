@@ -4,6 +4,7 @@
 
 #include "readSocket.h"
 #include "readKeyboard.h"
+#include <mutex>
 
 //
 /**
@@ -24,9 +25,10 @@ int main (int argc, char *argv[]) {
     }
 
     bool shouldTerminate = false; //this value is sent by reference to both threads so that we can shut them simultaneously
+    bool threadCondition = true;
 
-    readKeyboard keyboardTask(&connectionHandler, shouldTerminate);
-    readSocket socketTask(&connectionHandler, shouldTerminate);
+    readKeyboard keyboardTask(&connectionHandler, shouldTerminate, threadCondition);
+    readSocket socketTask(&connectionHandler, shouldTerminate, threadCondition);
 
     std::thread keyboardThread(&readKeyboard::run, &keyboardTask);
     std::thread socketThread(&readSocket::run, &socketTask);

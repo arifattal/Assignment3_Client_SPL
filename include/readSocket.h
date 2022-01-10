@@ -9,12 +9,15 @@
 #include <string>
 #include <vector>
 
+
 class readSocket {
     ConnectionHandler *handler;
     bool& shouldTerminate;
+    bool& threadCondition;
+
 
 public:
-    readSocket(ConnectionHandler *handler, bool &shouldTerminate);
+    readSocket(ConnectionHandler *handler, bool &shouldTerminate, bool &threadCondition);
     void run();
 };
 
