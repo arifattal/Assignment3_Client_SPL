@@ -34,7 +34,6 @@ int main (int argc, char *argv[]) {
     std::thread socketThread(&readSocket::run, &socketTask);
 
     socketThread.join();
-    std::cout << shouldTerminate << std::endl;
     keyboardThread.join();
 
     return 0;

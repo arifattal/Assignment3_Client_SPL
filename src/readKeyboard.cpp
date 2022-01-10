@@ -27,5 +27,4 @@ void readKeyboard::run() {
             threadCondition = false;
         }
     }
-    std::cout << "readKeyboard thread finished his job" << std::endl;
 }

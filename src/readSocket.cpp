@@ -31,5 +31,4 @@ void readSocket::run(){
             threadCondition = true;
         }
     }
-    std::cout << "readSocket thread finished his job" << std::endl;
 };
