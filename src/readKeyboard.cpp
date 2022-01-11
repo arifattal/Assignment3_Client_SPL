@@ -10,7 +10,7 @@ readKeyboard::readKeyboard(ConnectionHandler *handler, bool &shouldTerminate, bo
 //
 void readKeyboard::run() {
     while(!shouldTerminate){
-        if (threadCondition) {
+        if (threadCondition) { //this condition is initially set to true and set back to true after a message has been received from the server
             const short bufsize = 1024;
             char buf[bufsize];
             std::cin.getline(buf, bufsize);
@@ -24,7 +24,7 @@ void readKeyboard::run() {
 //        }
             // connectionHandler.sendLine(line) appends '\n' to the message. Therefore we send len+1 bytes.
             std::cout << "Sent " << len + 1 << " bytes to server" << std::endl;
-            threadCondition = false;
+            threadCondition = false; //set value to false. This value will be set back to true by the readSocket task
         }
     }
 }

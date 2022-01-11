@@ -28,7 +28,7 @@ void readSocket::run(){
             shouldTerminate = true;
         }
         else{
-            threadCondition = true;
+            threadCondition = true; //if an answer other than logout has been received return value to true so that we can keep receiving the user's input
         }
     }
 };

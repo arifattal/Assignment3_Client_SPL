@@ -25,7 +25,7 @@ int main (int argc, char *argv[]) {
     }
 
     bool shouldTerminate = false; //this value is sent by reference to both threads so that we can shut them simultaneously
-    bool threadCondition = true;
+    bool threadCondition = true; //start the condition at true, so that the readKeyboard thread can run correctly through it's first while cycle
 
     readKeyboard keyboardTask(&connectionHandler, shouldTerminate, threadCondition);
     readSocket socketTask(&connectionHandler, shouldTerminate, threadCondition);

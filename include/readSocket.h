@@ -13,7 +13,7 @@
 class readSocket {
     ConnectionHandler *handler;
     bool& shouldTerminate;
-    bool& threadCondition;
+    bool& threadCondition; //this is used mainly for correct shutting of the keyboard thread
 
 
 public:
